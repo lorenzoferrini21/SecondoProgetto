@@ -1,0 +1,30 @@
+.header {
+    background-color: #4ac1f7;
+}
+
+.email{
+    color: black;
+}
+
+.contattaci{
+    color: black;
+}
+
+.email a:hover{
+    text-decoration: none;
+}
+
+/*-------------------------------------------------------
+MAIN
+ ------------------------------------------------------*/
+
+.grid-main{
+    display: grid;
+    grid-template-areas: 'oggetto oggetto oggetto';
+    gap: 10px;
+    padding: 10px;
+}
+
+.copertina{
+    width: 50%;
+}

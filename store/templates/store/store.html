@@ -1,8 +1,13 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap-grid.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap-reboot.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/style.css' %}">
 </head>
 <body>
 <header>
@@ -18,11 +23,30 @@
         <a href="#">
            <div class="logo"></div>
         </a>
+
+        <!--FARE BOTTONE-->
+
         <a href="#">
-            <button class="SignIn">Login/Register</button>
+            <button class="SignIn">
+                <h3><a href="{% url 'users:register' %}">Register</a></h3>
+            </button>
         </a>
+        <h3><a href="{% url 'users:logout' %}">Logout</a></h3>
     </div>
 </header>
+<main>
+    <h1>WELCOME {{ user.username }}</h1>
+    <div class="grid-main">
+        {% for store in stores %}
+        <div class="oggetto">
+            <img src="{{ store.immagine.url }}" class="copertina" alt="...">
+            <p class="titolo">{{ store.titolo }}</p>
+            <p class="prezzo">€{{ store.prezzo }}</p>
+            <a href="#" class="button">ACQUISTA</a>
+        </div>
+        {% endfor %}
+    </div>
+</main>
 
 </body>
 </html>
