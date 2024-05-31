@@ -2,6 +2,16 @@
     background-color: #4ac1f7;
 }
 
+.topheader{
+    display: grid;
+    grid-template-areas: 'logo recapiti recapiti SignInButton SignUpButton LogoutButton';
+}
+
+.logo{
+    width: 100px;
+
+}
+
 .email{
     color: black;
 }

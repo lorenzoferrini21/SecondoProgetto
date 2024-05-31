@@ -12,30 +12,46 @@
 <body>
 <header>
     <div class="header">
-        <div class="recapiti">
+        <div class="topheader">
             <a href="#">
-                <div class="email">email:user@user.it</div>
+                {% load static %}
+                <img src="{% static 'store/logo.png' %}" class="logo" alt="...">
             </a>
-            <a href="#">
-                <div class="contattaci">contactUs:0123456789</div>
-            </a>
-        </div>
-        <a href="#">
-           <div class="logo"></div>
-        </a>
-
-        <!--FARE BOTTONE-->
-
-        <a href="#">
-            <button class="SignIn">
-                <h3><a href="{% url 'users:register' %}">Register</a></h3>
+            <div class="recapiti">
+                <a href="#">
+                    <div class="email">email:user@user.it</div>
+                </a>
+                <a href="#">
+                    <div class="contattaci">contactUs:0123456789</div>
+                </a>
+            </div>
+            {% if user.is_authenticated %}
+            <h3>Welcome {{ user.username }}</h3>
+            <button class="LogoutButton">
+                <a href="{% url 'users:logout' %}">Logout</a>
             </button>
-        </a>
-        <h3><a href="{% url 'users:logout' %}">Logout</a></h3>
+        {% else %}
+            <button class="SignUpButton">
+                <a href="{% url 'users:register' %}">Sign Up</a>
+            </button>
+            <button class="SignInButton">
+                <a href="{% url 'users:login' %}">Sign In</a>
+            </button>
+        {% endif %}
+        </div>
+    <!--AGGIUSTARE QUESTA PARTE PER LA VISUALIZZAZIONE DEI PRODOTTI NEL CARRELLO-->
+        {% for product in products %}
+            <div>
+                <h3>{{ product.name }}</h3>
+                <p>{{ product.description }}</p>
+                <p>{{ product.price }}</p>
+                <a href="{% url 'cart:add_to_cart' product.id %}">Add to Cart</a>
+            </div>
+        {% endfor %}
+    <!--FINO QUI-->
     </div>
 </header>
 <main>
-    <h1>WELCOME {{ user.username }}</h1>
     <div class="grid-main">
         {% for store in stores %}
         <div class="oggetto">
