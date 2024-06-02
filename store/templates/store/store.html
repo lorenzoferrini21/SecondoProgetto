@@ -17,6 +17,26 @@
                 {% load static %}
                 <img src="{% static 'store/logo.png' %}" class="logo" alt="...">
             </a>
+            <div class="search">
+                <input type="text" placeholder="Search..">
+            </div>
+            {% if user.is_authenticated %}
+            <h3 class="Welcome">Welcome {{ user.username }}</h3>
+            <button class="LogoutButton">
+                <a href="{% url 'users:logout' %}">Logout</a>
+            </button>
+            {% else %}
+                <div class="SignUpIn">
+                    <button class="SignUpButton">
+                        <a href="{% url 'users:register' %}">Sign Up</a>
+                    </button>
+                    <button class="SignInButton">
+                        <a href="{% url 'users:login' %}">Sign In</a>
+                    </button>
+                </div>
+            {% endif %}
+        </div>
+        <div class="bottomheader">
             <div class="recapiti">
                 <a href="#">
                     <div class="email">email:user@user.it</div>
@@ -25,35 +45,28 @@
                     <div class="contattaci">contactUs:0123456789</div>
                 </a>
             </div>
-            {% if user.is_authenticated %}
-            <h3>Welcome {{ user.username }}</h3>
-            <button class="LogoutButton">
-                <a href="{% url 'users:logout' %}">Logout</a>
-            </button>
+    <!--PRODOTTI NEL CARRELLO DELLO STORE-->
+        {% if user.is_authenticated %}
+            <a href="{% url 'cart:view_cart' %}">Cart</a>
         {% else %}
-            <button class="SignUpButton">
-                <a href="{% url 'users:register' %}">Sign Up</a>
-            </button>
-            <button class="SignInButton">
-                <a href="{% url 'users:login' %}">Sign In</a>
-            </button>
+            <a href="{% url 'users:register' %}">Cart (Sign up first)</a>
         {% endif %}
-        </div>
-    <!--AGGIUSTARE QUESTA PARTE PER LA VISUALIZZAZIONE DEI PRODOTTI NEL CARRELLO-->
-        <a href="{% url 'cart:view_cart' %}">Cart</a>
             <h3>Carrello</h3>
             <ul>
                 {% for item in cart_items %}
                     <li>
                         {{ item.product.titolo }} - ({{ item.quantity }}) - €{{ item.product.prezzo }} each
-                        <a href="{% url 'cart:remove_from_cart' item.id %}">Remove</a>
+                        <a href="{% url 'cart:remove_from_cart' item.id 'store' %}">Remove</a>
                     </li>
                 {% endfor %}
             </ul>
+        </div>
+
     <!--FINO QUI-->
     </div>
 </header>
 <main>
+    <!--CICLO PER VEDERE I PRODOTTI-->
     <div class="grid-main">
         {% for store in stores %}
         <div class="oggetto">
@@ -61,10 +74,11 @@
             <p class="titolo">{{ store.titolo }}</p>
             <p class="prezzo">€{{ store.prezzo }}</p>
             <a href="#" class="button">ACQUISTA</a>
+            <!--CONDIZIONE PER AGGIUNGERE AL CARRELLO SOLO SE SEI LOGGATO-->
             {% if user.is_authenticated %}
                 <a href="{% url 'cart:add_to_cart' store.id %}">Add to Cart</a>
             {% else %}
-            <a href="{% url 'users:register' %}">Log in to Add to Cart</a>
+            <a href="{% url 'users:register' %}">Add to Cart</a>
             {% endif %}
         </div>
         {% endfor %}

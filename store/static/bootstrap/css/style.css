@@ -3,8 +3,37 @@
 }
 
 .topheader{
-    display: grid;
-    grid-template-areas: 'logo recapiti recapiti SignInButton SignUpButton LogoutButton';
+    position: relative;
+    display: flex;
+    flex-direction: row;
+}
+
+.search{
+    float: left;
+    text-align: end;
+    padding-top: 20px;
+    width: 60%;
+}
+
+.search input[type=text]{
+    width: 50%;
+    height: 40px;
+}
+
+.SignUpIn{
+    display: flex;
+    float: left;
+    padding-top: 20px;
+    position: relative;
+}
+
+.SignUpButton {
+    height: 40px;
+    margin: 0 5px 0 5px;
+}
+
+.SignInButton {
+    height: 40px;
 }
 
 .logo{
