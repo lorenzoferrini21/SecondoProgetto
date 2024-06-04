@@ -1,0 +1,173 @@
+.header {
+    background-color: #4ac1f7;
+
+}
+
+.topheader{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+    justify-content: center;
+    text-align: center;
+}
+
+.logo{
+    width: 100px;
+    position: relative;
+    left: 20px;
+    border-bottom: 1px solid #fd7e14;
+}
+
+.search{
+    float: left;
+    text-align: end;
+    padding: 20px 10px 0 0;
+    width: 60%;
+    border-bottom: 1px solid #fd7e14;
+}
+
+.search input[type=text]{
+    width: 50%;
+    min-width: 150px;
+    height: 40px;
+    border-color: #fd7e14;
+    border-radius: 5px;
+}
+
+.SignUpIn{
+    display: flex;
+    float: left;
+    padding-top: 20px;
+    position: relative;
+    border-bottom: 1px solid #fd7e14;
+}
+
+.SignUpButton {
+    height: 40px;
+    margin: 0 5px 0 5px;
+    color: #fff;
+    border-color: #fd7e14;
+    border-radius: 5px;
+}
+
+.SignInButton {
+    height: 40px;
+    color: #fff;
+    border-color: #fd7e14;
+    border-radius: 5px;
+}
+
+.SignUpButton a{
+    text-decoration: none;
+    color: #fd7e14;
+    font-weight: bold;
+}
+
+.SignInButton a{
+    text-decoration: none;
+    color: #fd7e14;
+    font-weight: bold;
+}
+
+.Logged{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    padding-top: 20px;
+    border-bottom: 1px solid #fd7e14;
+}
+
+.Welcome{
+    padding-top: 5px;
+    text-align: center;
+}
+
+.LogoutButton{
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-color: #fd7e14;
+    border-radius: 5px;
+}
+
+.LogoutButton a{
+    text-decoration: none;
+    color: #fd7e14;
+    font-weight: bold;
+}
+
+.LogoutButton a:hover {
+    text-decoration: none; /* Assicura che non ci siano cambiamenti al passaggio del mouse */
+}
+
+@media (max-width: 700px) {
+    .Welcome {
+        display: none;
+    }
+
+    .LogoutButton{
+        float: left;
+    }
+}
+
+.email{
+    color: black;
+}
+
+.contattaci{
+    color: black;
+}
+
+.email a:hover{
+    text-decoration: none;
+}
+
+/*-------------------------------------------------------
+MAIN
+ ------------------------------------------------------*/
+
+.main{
+    display: grid;
+    grid-template-columns: 3fr 1fr; /* Assegna proporzioni alle colonne */
+    gap: 20px;
+}
+
+.grid-main {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    padding: 10px;
+}
+
+.oggetto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.quadro {
+    max-width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.cart{
+
+}
+
+@media (max-width: 1100px){
+    .grid-main {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px){
+    .grid-main {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+

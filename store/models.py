@@ -5,7 +5,8 @@ from django.db import models
 
 class Store(models.Model):
     immagine = models.ImageField()
-    titolo = models.CharField(max_length=50)
+    titolo = models.CharField(max_length=100)
+    artista = models.CharField(max_length=30)
     prezzo = models.FloatField()
 
     def __str__(self):
