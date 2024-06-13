@@ -1,38 +1,50 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Sign In</title>
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap-grid.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap-reboot.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/authentication.css' %}">
 </head>
 <body>
-<h1>Sign Up</h1>
 
-{% for message in messages %}
-<h1 >{{ message }}</h1>
-{% endfor %}
+<div class="container">
+    <h1>Sign Up</h1>
 
-<form action="" method="POST">
-{% csrf_token %}
-    <label>Username</label>
-    <br>
-    <input type="text" name="username" required />
-    <br>
-    <label>Email</label>
-    <br>
-    <input type="text" name="email" required/>
-    <br>
-    <label>Password</label>
-    <br>
-    <input type="password" name="password" required/>
-    <br>
-    <label>Repeat Password</label>
-    <br>
-    <input type="password" name="password2" required />
-    <br>
-    <br>
-    <input type="submit" value="Register" />
+    {% for message in messages %}
+        <h1 >{{ message }}</h1>
+    {% endfor %}
 
-</form>
+    <button class="login-button">
+        <a href="{% url 'users:login' %}">Already have an account? Log in here</a>
+    </button>
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        <label>Username</label>
+
+        <input type="text" name="username" required />
+
+        <label>Email</label>
+
+        <input type="text" name="email" required/>
+
+        <label>Password</label>
+
+        <input type="password" name="password" required/>
+
+        <label>Repeat Password</label>
+
+        <input type="password" name="password2" required />
+
+        <input type="submit" value="Register" />
+
+        </form>
+</div>
+
 
 </body>
 </html>

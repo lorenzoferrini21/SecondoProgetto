@@ -1,0 +1,9 @@
+{% extends 'store/store.html' %}
+{% block content %}
+<h2>Seleziona un artista:</h2>
+<ul>
+    {% for artist in artists %}
+    <li><a href="{% url 'store:store_by_artist' artist=artist %}">{{ artist }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}

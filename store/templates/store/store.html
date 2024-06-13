@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap-grid.css' %}">
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap-reboot.css' %}">
-    <link rel="stylesheet" href="{% static 'bootstrap/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/home.css' %}">
 </head>
 <body>
 <header>
@@ -47,23 +47,32 @@
                     <div class="contattaci">contactUs:0123456789</div>
                 </a>
             </div>
-    <!--PRODOTTI NEL CARRELLO DELLO STORE-->
-        {% if user.is_authenticated %}
-            <a href="{% url 'cart:view_cart' %}">Cart</a>
-        {% else %}
-            <a href="{% url 'users:register' %}">Cart (Sign up first)</a>
-        {% endif %}
+            <!--DROPDOWN PER LE CATEGORIE-->
+            <div class="dropdownbtp">
+                <button onclick="toggleDropdown()" class="dropdown">Select Artist</button>
+                <div id="artistDropdown" class="dropdown-content">
+                    {% for artist in artists %}
+                        <a href="#" onclick="filterByArtist('{{ artist }}')">{{ artist }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+            <!--CARRELLO DELLO STORE-->
+            {% if user.is_authenticated %}
+                <a href="{% url 'cart:view_cart' %}">Cart</a>
+            {% else %}
+                <a href="{% url 'users:register' %}">Cart (Sign up first)</a>
+            {% endif %}
         </div>
-
-    <!--FINO QUI-->
     </div>
+
 </header>
+
 <main>
     <div class="main">
         <!--CICLO PER VEDERE I PRODOTTI-->
         <div class="grid-main">
             {% for store in stores %}
-                <div class="oggetto">
+                <div id="store-{{ store.id }}" class="oggetto">
                     <img src="{{ store.immagine.url }}" class="quadro" alt="...">
                     <p class="titolo">{{ store.titolo }}</p>
                     <p class="artista">{{ store.artista }}</p>
@@ -93,5 +102,34 @@
 
 </main>
 
+<script>
+    function toggleDropdown() {
+        var dropdown = document.getElementById("artistDropdown");
+        if (dropdown.style.display === "block") {
+            dropdown.style.display = "none";
+        } else {
+            dropdown.style.display = "block";
+        }
+    }
+
+    function filterByArtist(artist) {
+        var allStores = document.getElementsByClassName("oggetto");
+        for (var i = 0; i < allStores.length; i++) {
+            var store = allStores[i];
+            var artistName = store.querySelector(".artista").textContent.trim();
+            if (artist === "All Artists" || artistName === artist) {
+                store.style.display = "block";
+            } else {
+                store.style.display = "none";
+            }
+        }
+        toggleDropdown();
+    }
+</script>
+
+
 </body>
 </html>
+
+    <!--FINO QUI-->
+
