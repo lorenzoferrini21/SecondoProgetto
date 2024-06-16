@@ -38,3 +38,33 @@ def remove_from_cart(request, store_id, redirect_to):
         return redirect('store:store')
     else:
         return redirect('cart:view_cart')
+
+
+@login_required
+def checkout(request):
+    try:
+        cart = Cart.objects.get(user=request.user)
+        cart_items = CartItem.objects.filter(cart=cart)
+    except Cart.DoesNotExist:
+        cart_items = []
+
+    total_price = sum(item.product.prezzo * item.quantity for item in cart_items)
+
+    if request.method == 'POST':
+        cart_items.delete()
+        return render(request, 'cart/checkout_success.html')
+
+    return render(request, 'cart/checkout.html', {'cart_items': cart_items, 'total_price': total_price})
+
+
+@login_required
+def checkout_single_item(request, store_id):
+    product = get_object_or_404(Store, id=store_id)
+    total_price = product.prezzo
+
+    if request.method == 'POST':
+        # Logica per completare l'acquisto del singolo prodotto
+        # Potrebbe essere necessario aggiungere logica per tracciare l'acquisto nel database
+        return render(request, 'cart/checkout_success.html')
+
+    return render(request, 'cart/checkout_single.html', {'product': product, 'total_price': total_price})

@@ -39,26 +39,20 @@
             {% endif %}
         </div>
         <div class="bottomheader">
-            <div class="recapiti">
-                <a href="#">
-                    <div class="email">email:user@user.it</div>
-                </a>
-                <a href="#">
-                    <div class="contattaci">contactUs:0123456789</div>
-                </a>
-            </div>
+
             <!--DROPDOWN PER LE CATEGORIE-->
             <div class="dropdownbtp">
                 <button onclick="toggleDropdown()" class="dropdown">Select Artist</button>
                 <div id="artistDropdown" class="dropdown-content">
+                    <a href="{%  url 'store:store' %}">Remove filter</a>
                     {% for artist in artists %}
-                        <a href="#" onclick="filterByArtist('{{ artist }}')">{{ artist }}</a>
+                        <a href="{% url 'store:filtered_store' artist=artist %}">{{ artist }}</a>
                     {% endfor %}
                 </div>
             </div>
             <!--CARRELLO DELLO STORE-->
             {% if user.is_authenticated %}
-                <a href="{% url 'cart:view_cart' %}">Cart</a>
+                <a class="carrello" href="{% url 'cart:view_cart' %}">Cart</a>
             {% else %}
                 <a href="{% url 'users:register' %}">Cart (Sign up first)</a>
             {% endif %}
@@ -77,7 +71,7 @@
                     <p class="titolo">{{ store.titolo }}</p>
                     <p class="artista">{{ store.artista }}</p>
                     <p class="prezzo">€{{ store.prezzo }}</p>
-                    <a href="#" class="button">ACQUISTA</a>
+                    <a href="{% url 'cart:checkout_single_item' store.id %}" class="button">Buy now</a>
                     <!--CONDIZIONE PER AGGIUNGERE AL CARRELLO SOLO SE SEI LOGGATO-->
                 {% if user.is_authenticated %}
                     <a href="{% url 'cart:add_to_cart' store.id %}">Add to Cart</a>
@@ -96,11 +90,32 @@
                         <a href="{% url 'cart:remove_from_cart' item.id 'store' %}">Remove</a>
                     </li>
                 {% endfor %}
+
             </ul>
+            <div class="BuyNow">
+                {% if cart_count > 0 %}
+                    <a href="{% url 'cart:checkout' %}" class="button">Buy Now</a>
+                {% else %}
+                    <a href="#" class="button disabled" onclick="alert('Please add items to your cart before proceeding to checkout.'); return false;">Compra ora</a>
+                {% endif %}
+            </div>
+
+
         </div>
     </div>
 
 </main>
+
+<footer>
+    <div class="recapiti">
+                <a href="#">
+                    <div class="email">email:user@user.it</div>
+                </a>
+                <a href="#">
+                    <div class="contattaci">contactUs:0123456789</div>
+                </a>
+            </div>
+</footer>
 
 <script>
     function toggleDropdown() {
@@ -111,25 +126,10 @@
             dropdown.style.display = "block";
         }
     }
-
-    function filterByArtist(artist) {
-        var allStores = document.getElementsByClassName("oggetto");
-        for (var i = 0; i < allStores.length; i++) {
-            var store = allStores[i];
-            var artistName = store.querySelector(".artista").textContent.trim();
-            if (artist === "All Artists" || artistName === artist) {
-                store.style.display = "block";
-            } else {
-                store.style.display = "none";
-            }
-        }
-        toggleDropdown();
-    }
 </script>
 
 
 </body>
 </html>
 
-    <!--FINO QUI-->
 

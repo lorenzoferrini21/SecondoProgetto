@@ -5,6 +5,5 @@ app_name = 'store'
 
 urlpatterns = [
     path('', views.store, name='store'),
-    path('store_by_artist/', views.store_by_artist, name='store_by_artist'),
-    path('filtered_store/<str:artist>/', views.filtered_store, name='filtered_store'),
+    path('filtered_by_artist/<str:artist>/', views.filtered_store, name='filtered_store'),
 ]

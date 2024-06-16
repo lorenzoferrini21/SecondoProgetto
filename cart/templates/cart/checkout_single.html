@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h2>Checkout</h2>
+        <ul>
+            <li>{{ product.titolo }} - €{{ product.prezzo }}</li>
+        </ul>
+        <h3>Total Price: €{{ total_price }}</h3>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary">Confirm Purchase</button>
+        </form>
+    </div>
+</body>
+</html>

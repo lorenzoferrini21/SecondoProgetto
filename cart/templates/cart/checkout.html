@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h2>Checkout</h2>
+        {% if cart_items %}
+            <ul>
+                {% for item in cart_items %}
+                    <li>{{ item.product.titolo }} - {{ item.quantity }} x €{{ item.product.prezzo }}</li>
+                {% endfor %}
+            </ul>
+            <h3>Total Price: €{{ total_price }}</h3>
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-primary">Confirm Purchase</button>
+            </form>
+        {% else %}
+            <p>Your cart is empty. Please add items to your cart before proceeding to checkout.</p>
+            <a href="{% url 'store:store' %}" class="btn btn-primary">Continue Shopping</a>
+        {% endif %}
+    </div>
+</body>
+</html>
