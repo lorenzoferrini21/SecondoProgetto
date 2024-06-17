@@ -1,0 +1,284 @@
+
+.header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+}
+
+.topheader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.logo {
+    height: 100px;
+
+}
+
+
+.search input[type="text"] {
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+}
+
+.Logged a, .SignUpIn a{
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button, .bottomheader a {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover, .topheader a:hover, .bottomheader a:hover {
+    background-color: #0056b3;
+}
+
+/* Stile per il dropdown */
+.dropdownbtp {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.Logged, .SignUpIn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.Welcome {
+    margin: 0;
+    font-size: 16px;
+}
+
+@media (max-width: 768px) {
+     .bottomheader {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .search input[type="text"] {
+        width: 100%;
+    }
+}
+
+@media (max-width: 700px) {
+    .Welcome {
+        display: none;
+    }
+
+    .LogoutButton{
+        float: left;
+    }
+
+}
+
+
+/*-------------------------------------------------------
+MAIN
+ ------------------------------------------------------*/
+
+.main{
+    display: grid;
+    grid-template-columns: 3fr 1fr; /* Assegna proporzioni alle colonne */
+    gap: 20px;
+    padding: 20px;
+}
+
+.grid-main {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 10px;
+    justify-content: center;
+}
+
+.oggetto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.quadro {
+    max-width: 100%;
+    height: auto;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.titolo {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.artista {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.prezzo {
+    font-size: 16px;
+    font-weight: bold;
+    color: #28a745;
+    margin-bottom: 15px;
+}
+
+.button, .oggetto a {
+    display: inline-block;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.button{
+    margin-bottom: 10px;
+}
+
+.oggetto a {
+    background-color: #28a745;
+}
+
+.button:hover, .oggetto a:hover {
+    background-color: #0056b3;
+}
+
+.oggetto a:hover {
+    background-color: #218838; /* Effetto hover diverso per "Add to Cart" */
+}
+
+/*------------------------------------------------------------
+ CARRELLO
+ -----------------------------------------------------------*/
+.cart {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 20px auto;
+    width: 300px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.cart h3 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.cart ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.cart ul li {
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+    padding: 10px;
+    margin-bottom: 5px;
+    color: #333;
+    font-size: 14px;
+}
+
+.cart ul li a {
+    color: #d9534f;
+    text-decoration: none;
+    font-weight: bold;
+    float: right;
+}
+
+.cart ul li a:hover {
+    text-decoration: none;
+}
+
+.BuyNow a{
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/*---------------------------------------------------------------
+FOOTER
+-------------------------------------------------------------- */
+
+.recapiti{
+    background-color: #4ac1f7;
+}
+
+@media (max-width: 1100px){
+
+    .main{
+        grid-template-columns: 3fr;
+    }
+
+    .cart{
+        display: none;
+    }
+}
+
+@media (max-width: 768px){
+    .grid-main {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 580px){
+    .grid-main {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+}
+

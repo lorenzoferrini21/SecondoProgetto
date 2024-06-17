@@ -82,7 +82,7 @@
             {% endfor %}
         </div>
         <div class="cart">
-            <h3>Carrello</h3>
+            <h3>Cart</h3>
             <ul>
                 {% for item in cart_items %}
                     <li>
@@ -96,7 +96,7 @@
                 {% if cart_count > 0 %}
                     <a href="{% url 'cart:checkout' %}" class="button">Buy Now</a>
                 {% else %}
-                    <a href="#" class="button disabled" onclick="alert('Please add items to your cart before proceeding to checkout.'); return false;">Compra ora</a>
+                    <a href="#" class="button disabled" onclick="alert('Please add items to your cart before proceeding to checkout.'); return false;">Buy Now</a>
                 {% endif %}
             </div>
 

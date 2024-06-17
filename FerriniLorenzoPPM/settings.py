@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from ensurepip import bootstrap
 from pathlib import Path
 import os
+import dj_database_url
 
 from django.template.context_processors import static
 
@@ -101,11 +102,11 @@ WSGI_APPLICATION = 'FerriniLorenzoPPM.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'progettoPPM',
+        'NAME': 'railway',
         'USER': 'postgres',
-        'PASSWORD': 'webuser',
-        'HOST': 'localhost',
-        'PORT': '5432'
+        'PASSWORD': 'ZiuhIcmQDFwRdQotvcaTNOqlXRBphoLM',
+        'HOST': 'roundhouse.proxy.rlwy.net',
+        'PORT': '42073'
     }
 }
 
