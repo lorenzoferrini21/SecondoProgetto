@@ -71,7 +71,11 @@
                     <p class="titolo">{{ store.titolo }}</p>
                     <p class="artista">{{ store.artista }}</p>
                     <p class="prezzo">€{{ store.prezzo }}</p>
+                {% if user.is_authenticated %}
                     <a href="{% url 'cart:checkout_single_item' store.id %}" class="button">Buy now</a>
+                {% else %}
+                    <a href="{% url 'users:register' %}">Buy now(Sign up first)</a>
+                {% endif %}
                     <!--CONDIZIONE PER AGGIUNGERE AL CARRELLO SOLO SE SEI LOGGATO-->
                 {% if user.is_authenticated %}
                     <a href="{% url 'cart:add_to_cart' store.id %}">Add to Cart</a>
