@@ -63,8 +63,7 @@ def checkout_single_item(request, store_id):
     total_price = product.prezzo
 
     if request.method == 'POST':
-        # Logica per completare l'acquisto del singolo prodotto
-        # Potrebbe essere necessario aggiungere logica per tracciare l'acquisto nel database
+
         return render(request, 'cart/checkout_success.html')
 
     return render(request, 'cart/checkout_single.html', {'product': product, 'total_price': total_price})

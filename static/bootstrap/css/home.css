@@ -295,6 +295,10 @@ footer .recapiti a:hover .contattaci {
     .grid-main {
         grid-template-columns: repeat(2, 1fr);
     }
+
+    .search{
+        display: none;
+    }
 }
 
 @media (max-width: 580px){

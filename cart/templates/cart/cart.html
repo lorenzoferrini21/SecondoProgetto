@@ -16,6 +16,13 @@
             </li>
         {% endfor %}
     </ul>
+    <div class="BuyNow">
+        {% if cart_items %}
+            <a href="{% url 'cart:checkout' %}" class="button">Buy Now</a>
+        {% else %}
+            <a href="#" class="button disabled" onclick="alert('Please add items to your cart before proceeding to checkout.'); return false;">Buy Now</a>
+        {% endif %}
+    </div>
     <a href="{% url 'store:store' %}">Continue Shopping</a>
 </body>
 </html>
