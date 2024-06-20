@@ -4,7 +4,7 @@ services:
     name: mysite
     runtime: python
     buildCommand: "./build.sh"
-    startCommand: "python -m gunicorn FerriniLorenzoPPM.asgi:application -k uvicorn.workers.UvicornWorker"
+    startCommand: "gunicorn FerriniLorenzoPPM.asgi:application -k uvicorn.workers.UvicornWorker"
     envVars:
       - key: DATABASE_URL
         value: "postgres://postgres:ZiuhIcmQDFwRdQotvcaTNOqlXRBphoLM@roundhouse.proxy.rlwy.net:42073/railway"
