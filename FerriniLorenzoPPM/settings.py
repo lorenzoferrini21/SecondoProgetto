@@ -13,17 +13,21 @@ from ensurepip import bootstrap
 from pathlib import Path
 import os
 import dj_database_url
-
+import railway
+import roundhouse
+from django.db.backends import postgresql
+from dotenv import load_dotenv
 from django.template.context_processors import static
 
+
 import cart.apps
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-
-STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
@@ -34,12 +38,12 @@ STATICFILES_DIRS = [
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-y(b2pujnq@q)er_mgv=b=a7dj&b@-qo5g!qey26v@em82czj@*'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(',')
 
 
 # Application definition
@@ -99,15 +103,21 @@ WSGI_APPLICATION = 'FerriniLorenzoPPM.wsgi.application'
 #    }
 #}
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': 'ZiuhIcmQDFwRdQotvcaTNOqlXRBphoLM',
-        'HOST': 'roundhouse.proxy.rlwy.net',
-        'PORT': '42073'
-    }
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql',
+#        'NAME': 'railway',
+#        'USER': 'postgres',
+#        'PASSWORD': 'ZiuhIcmQDFwRdQotvcaTNOqlXRBphoLM',
+#        'HOST': 'roundhouse.proxy.rlwy.net',
+#        'PORT': '42073'
+#    }
+#}
+
+DATABASE = {
+    'default': dj_database_url.config(
+        default=os.environ.get('DATABASE_URL')
+    )
 }
 
 
@@ -150,6 +160,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 
 
 # Default primary key field type
