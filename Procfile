@@ -1,3 +1,3 @@
-web: gunicorn FerriniLorenzoPPM.wsgi
+web: gunicorn FerriniLorenzoPPM.wsgi:application
 
 
