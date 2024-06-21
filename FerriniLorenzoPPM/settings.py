@@ -41,7 +41,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'jq4m$xb&$+plpdv(dpqmfq1d&!tbvu
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['Ukiyo-e.onrender.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['https://secondoprogetto-1.onrender.com', 'localhost', '127.0.0.1']
 
 # Application definition
 
