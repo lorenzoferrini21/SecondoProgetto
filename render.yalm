@@ -7,7 +7,7 @@ services:
     startCommand: "python -m gunicorn FerriniLorenzoPPM.asgi:application -k uvicorn.workers.UvicornWorker"
       envVars:
       - key: DATABASE_URL
-        value: "https://github.com/railwayapp-templates/postgres-ssl/pkgs/container/postgres-ssl"
+        value: "postgres://postgres:ZiuhIcmQDFwRdQotvcaTNOqlXRBphoLM@roundhouse.proxy.rlwy.net:42073/railway"
       - key: SECRET_KEY
         generateValue: true
       - key: WEB_CONCURRENCY
